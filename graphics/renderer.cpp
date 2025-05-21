@@ -38,6 +38,9 @@ static const RendererTypeDescription rendererTypes[] = {
 #ifdef USE_TINYGL
 	{ "software", "Software", kRendererTypeTinyGL },
 #endif
+#ifdef USE_FITD
+	{ "fitd", _s("F.I.T.D."), kRendererTypeFitd },
+#endif
 	{ 0, 0, kRendererTypeDefault }
 };
 

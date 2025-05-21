@@ -1286,6 +1286,9 @@ Graphics::RendererType determinateRenderType() {
 #if defined(USE_TINYGL)
 	    Graphics::kRendererTypeTinyGL |
 #endif
+#if defined(USE_FITD)
+		Graphics::kRendererTypeFitd |
+#endif
 	    0);
 
 	if (matchingRendererType != desiredRendererType && desiredRendererType != Graphics::kRendererTypeDefault) {
@@ -1305,6 +1308,11 @@ Graphics::RendererType determinateRenderType() {
 
 	#if defined(USE_TINYGL)
 	return Graphics::kRendererTypeTinyGL;
+	#endif
+
+	#if defined(USE_FITD)
+	if (matchingRendererType == Graphics::kRendererTypeFitd)
+		return matchingRendererType;
 	#endif
 
 	return Graphics::kRendererTypeDefault;
@@ -1338,6 +1346,12 @@ Renderer *createRenderer(int screenW, int screenH, Common::RenderMode renderMode
 	if (rendererType == Graphics::kRendererTypeTinyGL) {
 		// TinyGL graphics are always authentic
 		return CreateGfxTinyGL(screenW, screenH, renderMode);
+	}
+	#endif
+
+	#if defined(USE_FITD)
+	if (rendererType == Graphics::kRendererTypeTinyGL) {
+		return CreateGfxFitd(screenW, screenH, renderMode);
 	}
 	#endif
 

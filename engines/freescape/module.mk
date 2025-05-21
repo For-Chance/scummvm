@@ -66,6 +66,12 @@ MODULE_OBJS += \
 	gfx_opengl_texture.o
 endif
 
+ifdef USE_FITD
+MODULE_OBJS += \
+	gfx_fitd.o \
+	gfx_fitd_texture.o
+endif
+
 
 MODULE_DIRS += \
 	engines/freescape
