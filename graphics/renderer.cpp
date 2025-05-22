@@ -89,6 +89,11 @@ uint32 Renderer::getAvailableTypes() {
 	available |= kRendererTypeTinyGL;
 #endif
 
+#if defined(USE_FITD)
+	/* Fitd doesn't depend on hardware support */
+	available |= kRendererTypeFitd;
+#endif
+
 #if defined(USE_OPENGL_GAME) || defined(USE_OPENGL_SHADERS)
 	bool backendCapableOpenGL = g_system->hasFeature(OSystem::kFeatureOpenGLForGame);
 
